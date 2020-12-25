@@ -1,0 +1,28 @@
+---
+- name: Install from nginx server
+  yum:
+    name:
+      - nginx
+
+- name: create user {{nginx_user}}
+  user:
+    name: "{{nginx_user}}"
+    comment: "{{nginx_user}}"
+    create_home: false
+
+- name: Create directories - Nginx Config
+  file:
+    path: /etc/nginx/{{ item.path }}
+    state: directory
+    force: yes
+  with_filetree: ../templates/nginx/
+  when: item.state != 'file'
+
+- name: Creates files - Config Nginx
+  template:
+    src: '{{ item.src }}'
+    dest: /etc/nginx/{{ item.path }}
+    force: yes
+  with_filetree: ../templates/nginx/
+  when: item.state == 'file'
+  notify: restart nginx

@@ -1,0 +1,48 @@
+---
+# defaults file for ansible-nginx
+#Config nginx - sites-enabled
+nginx_server_name:
+config_path_nginx: "/etc/nginx/conf.d/"
+nginx_root_path: "/usr/share/nginx/html/"
+nginx_listen_port: 80
+nginx_add_security: True
+nginx_log_domain: True
+nginx_reverse_proxy: True
+nginx_subdomains_redirect: True
+
+#Config nginx - nginx.conf
+nginx_user: "www-data"
+nginx_worker_processes: "auto"
+nginx_worker_rlimit_nofile: 65535
+nginx_multi_accept: "on"
+nginx_worker_connections: 65535
+
+#Nginx Config - general.conf
+nginx_enable_robots_txt: True
+nginx_bots_log_not_found: "off"
+nginx_bots_access_log: "off"
+
+nginx_enable_gzip: True
+nginx_gzip: "on"
+nginx_gzip_vary: "on"
+nginx_gzip_proxied: any
+nginx_gzip_comp_level: 5
+nginx_gzip_types: text/plain text/css application/json application/javascript
+
+#Nginx Config - http.conf
+nginx_charset: "utf-8"
+nginx_sendfile: "on"
+nginx_tcp_nopush: "on"
+nginx_tcp_nodelay: "on"
+nginx_server_tokens: "off"
+nginx_types_hash_max_size: "2048"
+nginx_client_max_body_size: "16M"
+
+#Nginx Config - proxy.conf
+nginx_proxy_connect_timeout: "60s"
+nginx_proxy_send_timeout: "60s"
+nginx_proxy_read_timeout: "60s"
+
+#Nginx Config - proxy.conf
+nginx_proxy_backends_simple: []
+nginx_proxy_backends_custom: []
