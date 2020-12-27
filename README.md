@@ -53,8 +53,10 @@ Instalação do Nginx para usar como proxy de front-end.
 
 - `nginx_proxy_backends_custom`: Lista de dicionários de servidores back-end com os seguintes campos:
 
-  - `proxy_http_version`: Define a versão do protocolo HTTP para proxy
-  - `proxy_cache_bypass`: Define as condições sob as quais a resposta não será obtida de um cache.
+  - `proxy_redirect`: Define o texto que deve ser alterado nos campos de cabeçalho "Location" e "Refresh" de uma resposta do servidor proxy;
+  - `proxy_buffering`: Habilita ou desabilita o buffer de respostas do servidor proxy;
+  - `proxy_http_version`: Define a versão do protocolo HTTP para proxy;
+  - `proxy_cache_bypass`: Define as condições sob as quais a resposta não será obtida de um cache;
   - `proxy_set_header`: Permite redefinir ou anexar campos ao cabeçalho da solicitação passada ao servidor proxy, por exemplo:
 
     - Upgrade
@@ -65,10 +67,11 @@ Instalação do Nginx para usar como proxy de front-end.
     - X-Forwarded-Proto
     - X-Forwarded-Host
     - X-Forwarded-Port
+    - Proxy-Connection
 
-  - `proxy_connect_timeout`: Tempo limite para estabelecer uma conexão com um servidor proxy
-  - `proxy_send_timeout`: Tempo limite para transmitir uma solicitação ao servidor proxy
-  - `proxy_read_timeout`: Tempo limite para ler uma resposta do servidor proxy
+  - `proxy_connect_timeout`: Tempo limite para estabelecer uma conexão com um servidor proxy;
+  - `proxy_send_timeout`: Tempo limite para transmitir uma solicitação ao servidor proxy;
+  - `proxy_read_timeout`: Tempo limite para ler uma resposta do servidor proxy;
 
 - `nginx_proxy_backends_simple`: Lista de dicionários de servidores back-end com os seguintes campos, nos quais estara configurado o proxy com os seguintes valores:
 

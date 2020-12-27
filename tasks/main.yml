@@ -1,8 +1,9 @@
 ---
-- name: Install from nginx server
+- name: Install the basic packages
   yum:
     name:
       - nginx
+      - policycoreutils-python-utils
 
 - name: create user {{nginx_user}}
   user:
@@ -25,4 +26,18 @@
     force: yes
   with_filetree: ../templates/nginx/
   when: item.state == 'file'
+  notify: restart nginx
+
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+  notify: restart nginx
+
+- name: Set httpd_setrlimit flag on and keep it persistent across reboots
+  seboolean:
+    name: httpd_setrlimit
+    state: yes
+    persistent: yes
   notify: restart nginx
